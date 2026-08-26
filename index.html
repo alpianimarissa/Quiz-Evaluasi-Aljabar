@@ -244,7 +244,7 @@
 
     <!-- Data & Script Logic -->
     <script>
-        const STORAGE_KEY = "aljabar_quiz_30_v4_new_questions";
+        const STORAGE_KEY = "aljabar_quiz_30_v5_shuffled";
 
         // KaTeX Options configuration
         const katexOptions = {
@@ -261,15 +261,15 @@
             }
         }
 
-        // 30 Brand New Algebra Questions Data
+        // 30 Algebra Questions Data with shuffled correct choices
         const quizQuestions = [
             // Kategori 1: Unsur Aljabar (Soal 1-4)
             {
                 id: 1,
                 category: "Unsur Aljabar",
                 question: "Pada bentuk aljabar $-2x^3 + 5x^2 - 8x + 12$, manakah yang merupakan <strong>koefisien dari $x^3$</strong>?",
-                options: ["$2$", "$-2$", "$-8$", "$5$"],
-                correct: 1,
+                options: ["$2$", "$-8$", "$-2$", "$5$"],
+                correct: 2, // Choice C
                 explanation: "Koefisien dari $x^3$ adalah faktor pengali di depan variabel $x^3$. Beserta tanda negatifnya, nilainya adalah $-2$."
             },
             {
@@ -277,23 +277,23 @@
                 category: "Unsur Aljabar",
                 question: "Nilai <strong>konstanta</strong> dari ekspresi aljabar $7a - 4b - 15$ adalah...",
                 options: ["$7$", "$-4$", "$15$", "$-15$"],
-                correct: 3,
+                correct: 3, // Choice D
                 explanation: "Konstanta merupakan suku yang bernilai tetap dan tidak memuat variabel. Pada ekspresi ini nilainya adalah $-15$."
             },
             {
                 id: 3,
                 category: "Unsur Aljabar",
                 question: "Berapakah jumlah <strong>suku</strong> pada bentuk aljabar $3p^2q - 5pq^2 + 7p - 2q + 9$?",
-                options: ["$4$ suku", "$5$ suku", "$6$ suku", "$3$ suku"],
-                correct: 1,
+                options: ["$5$ suku", "$4$ suku", "$6$ suku", "$3$ suku"],
+                correct: 0, // Choice A
                 explanation: "Suku-suku dipisahkan oleh tanda operasi $+$ atau $-$. Suku-sukunya yaitu: $3p^2q$, $-5pq^2$, $7p$, $-2q$, dan $9$ (total ada 5 suku)."
             },
             {
                 id: 4,
                 category: "Unsur Aljabar",
                 question: "Sebutkan seluruh <strong>variabel</strong> yang digunakan dalam bentuk aljabar $6u^2v - 3w + 10$ !",
-                options: ["$u, v, w$", "$u^2, v, w$", "$6, -3, 10$", "$u, v$"],
-                correct: 0,
+                options: ["$u^2, v, w$", "$u, v, w$", "$6, -3, 10$", "$u, v$"],
+                correct: 1, // Choice B
                 explanation: "Variabel adalah lambang pengganti suatu bilangan yang disimbolkan dengan huruf dasar. Huruf variabelnya adalah $u, v,$ dan $w$."
             },
 
@@ -303,7 +303,7 @@
                 category: "Suku Sejenis",
                 question: "Manakah suku berikut yang <strong>sejenis</strong> dengan $-8x^2y^3$?",
                 options: ["$5x^3y^2$", "$5y^3x^2$", "$-8x^2y^2$", "$8xy^3$"],
-                correct: 1,
+                correct: 1, // Choice B
                 explanation: "$5y^3x^2$ sejenis karena variabel dan variabel berpangkatnya persis sama ($x$ pangkat 2 dan $y$ pangkat 3). Sifat komutatif perkalian berlaku ($x^2y^3 = y^3x^2$)."
             },
             {
@@ -311,15 +311,15 @@
                 category: "Suku Sejenis",
                 question: "Manakah suku di bawah ini yang <strong>BUKAN</strong> merupakan suku sejenis dari $4a^3b$?",
                 options: ["$-a^3b$", "$\\frac{1}{2}a^3b$", "$4ab^3$", "$12ba^3$"],
-                correct: 2,
+                correct: 2, // Choice C
                 explanation: "$4ab^3$ tidak sejenis karena pangkat pada huruf $a$ adalah 1 dan pangkat pada $b$ adalah 3 (posisi pangkat terbalik)."
             },
             {
                 id: 7,
                 category: "Suku Sejenis",
                 question: "Sederhanakan ekspresi aljabar: $6m^2n - 4mn^2 + 3m^2n + 9mn^2$ !",
-                options: ["$9m^2n + 5mn^2$", "$9m^4n^2 + 5m^2n^4$", "$14m^2n + 5mn^2$", "$9m^2n - 13mn^2$"],
-                correct: 0,
+                options: ["$9m^4n^2 + 5m^2n^4$", "$14m^2n + 5mn^2$", "$9m^2n + 5mn^2$", "$9m^2n - 13mn^2$"],
+                correct: 2, // Choice C
                 explanation: "Kelompokkan suku sejenis:\n• $(6m^2n + 3m^2n) = 9m^2n$\n• $(-4mn^2 + 9mn^2) = 5mn^2$\nHasil akhir $= 9m^2n + 5mn^2$."
             },
             {
@@ -327,7 +327,7 @@
                 category: "Suku Sejenis",
                 question: "Bentuk sederhana dari $7x - 9y + 3x + 12y - 5$ adalah...",
                 options: ["$10x - 3y - 5$", "$10x + 3y - 5$", "$4x + 3y - 5$", "$10x + 21y - 5$"],
-                correct: 1,
+                correct: 1, // Choice B
                 explanation: "Jumlahkan suku-suku sejenis:\n• $7x + 3x = 10x$\n• $-9y + 12y = 3y$\n• Konstanta $= -5$\nHasil $= 10x + 3y - 5$."
             },
             {
@@ -335,7 +335,7 @@
                 category: "Suku Sejenis",
                 question: "Hasil penyederhanaan dari $3(2a - b) + 4(a + 2b)$ adalah...",
                 options: ["$10a + 5b$", "$10a - 5b$", "$10a + 11b$", "$6a + 5b$"],
-                correct: 0,
+                correct: 0, // Choice A
                 explanation: "Jabarkan distributif dulu:\n$3(2a - b) + 4(a + 2b) = 6a - 3b + 4a + 8b = (6a + 4a) + (-3b + 8b) = 10a + 5b$."
             },
 
@@ -344,24 +344,24 @@
                 id: 10,
                 category: "Pengurangan Aljabar",
                 question: "Hasil pengurangan $5x - 3$ <strong>DARI</strong> $9x + 4$ adalah...",
-                options: ["$4x + 7$", "$4x + 1$", "$-4x - 7$", "$14x + 1$"],
-                correct: 0,
+                options: ["$4x + 1$", "$4x + 7$", "$-4x - 7$", "$14x + 1$"],
+                correct: 1, // Choice B
                 explanation: "Pengurangan 'DARI' berarti bentuk kedua dikurangi bentuk pertama:\n$(9x + 4) - (5x - 3) = 9x + 4 - 5x + 3 = 4x + 7$."
             },
             {
                 id: 11,
                 category: "Pengurangan Aljabar",
                 question: "Kurangkan bentuk aljabar $3a + 8b$ <strong>OLEH</strong> $7a - 2b$ !",
-                options: ["$-4a + 10b$", "$-4a + 6b$", "$10a + 6b$", "$4a - 10b$"],
-                correct: 0,
+                options: ["$-4a + 6b$", "$10a + 6b$", "$-4a + 10b$", "$4a - 10b$"],
+                correct: 2, // Choice C
                 explanation: "Pengurangan 'OLEH' mengikuti urutan awal:\n$(3a + 8b) - (7a - 2b) = 3a + 8b - 7a + 2b = -4a + 10b$."
             },
             {
                 id: 12,
                 category: "Pengurangan Aljabar",
                 question: "Hasil pengurangan $(4p - 3q + 5)$ <strong>DARI</strong> $(7p - 8q - 2)$ adalah...",
-                options: ["$3p - 5q - 7$", "$3p - 11q + 3$", "$-3p + 5q + 7$", "$11p - 11q + 3$"],
-                correct: 0,
+                options: ["$3p - 11q + 3$", "$-3p + 5q + 7$", "$11p - 11q + 3$", "$3p - 5q - 7$"],
+                correct: 3, // Choice D
                 explanation: "Susun dari belakang:\n$(7p - 8q - 2) - (4p - 3q + 5) = 7p - 8q - 2 - 4p + 3q - 5 = 3p - 5q - 7$."
             },
             {
@@ -369,23 +369,23 @@
                 category: "Pengurangan Aljabar",
                 question: "Kurangkan $-5m + 4n$ <strong>DARI</strong> $3m - 7n$ !",
                 options: ["$8m - 11n$", "$-2m - 3n$", "$-8m + 11n$", "$8m + 3n$"],
-                correct: 0,
+                correct: 0, // Choice A
                 explanation: "Gunakan pola $(Bentuk 2) - (Bentuk 1)$:\n$(3m - 7n) - (-5m + 4n) = 3m - 7n + 5m - 4n = 8m - 11n$."
             },
             {
                 id: 14,
                 category: "Pengurangan Aljabar",
                 question: "Hasil dari pengurangan $8x^2 - 3x + 6$ <strong>OLEH</strong> $3x^2 - 7x - 4$ adalah...",
-                options: ["$5x^2 + 4x + 10$", "$5x^2 - 10x + 2$", "$11x^2 - 10x + 2$", "$5x^2 + 4x + 2$"],
-                correct: 0,
+                options: ["$5x^2 - 10x + 2$", "$5x^2 + 4x + 10$", "$11x^2 - 10x + 2$", "$5x^2 + 4x + 2$"],
+                correct: 1, // Choice B
                 explanation: "Hitung sesuai urutan (OLEH):\n$(8x^2 - 3x + 6) - (3x^2 - 7x - 4) = 8x^2 - 3x + 6 - 3x^2 + 7x + 4 = 5x^2 + 4x + 10$."
             },
             {
                 id: 15,
                 category: "Pengurangan Aljabar",
                 question: "Kurangkan $9a^2b - 4ab^2$ <strong>DARI</strong> $3a^2b + 6ab^2$ !",
-                options: ["$-6a^2b + 10ab^2$", "$6a^2b - 10ab^2$", "$-6a^2b + 2ab^2$", "$12a^2b + 2ab^2$"],
-                correct: 0,
+                options: ["$6a^2b - 10ab^2$", "$-6a^2b + 10ab^2$", "$-6a^2b + 2ab^2$", "$12a^2b + 2ab^2$"],
+                correct: 1, // Choice B
                 explanation: "Susun pengurangan 'DARI':\n$(3a^2b + 6ab^2) - (9a^2b - 4ab^2) = 3a^2b + 6ab^2 - 9a^2b + 4ab^2 = -6a^2b + 10ab^2$."
             },
 
@@ -395,31 +395,31 @@
                 category: "Operasi Perkalian",
                 question: "Hasil perkalian suku tunggal $-4x(3x^2 - 2x + 5)$ adalah...",
                 options: ["$-12x^3 + 8x^2 - 20x$", "$-12x^3 - 8x^2 + 20x$", "$12x^3 - 8x^2 + 20x$", "$-12x^2 + 8x - 20$"],
-                correct: 0,
+                correct: 0, // Choice A
                 explanation: "Perkalian distributif:\n• $-4x \\cdot 3x^2 = -12x^3$\n• $-4x \\cdot (-2x) = +8x^2$\n• $-4x \\cdot 5 = -20x$\nHasil $= -12x^3 + 8x^2 - 20x$."
             },
             {
                 id: 17,
                 category: "Operasi Perkalian",
                 question: "Perkalian dua suku binomial $(3x + 2)(2x - 5)$ menghasilkan...",
-                options: ["$6x^2 - 11x - 10$", "$6x^2 + 11x - 10$", "$6x^2 - 19x - 10$", "$6x^2 - 10$"],
-                correct: 0,
+                options: ["$6x^2 + 11x - 10$", "$6x^2 - 19x - 10$", "$6x^2 - 10$", "$6x^2 - 11x - 10$"],
+                correct: 3, // Choice D
                 explanation: "Gunakan perkalian FOIL:\n$(3x)(2x) + (3x)(-5) + (2)(2x) + (2)(-5) = 6x^2 - 15x + 4x - 10 = 6x^2 - 11x - 10$."
             },
             {
                 id: 18,
                 category: "Operasi Perkalian",
                 question: "Bentuk sederhana dari perkalian $(2x - 7)(2x + 7)$ adalah...",
-                options: ["$4x^2 - 49$", "$4x^2 + 49$", "$4x^2 - 28x - 49$", "$2x^2 - 49$"],
-                correct: 0,
+                options: ["$4x^2 + 49$", "$4x^2 - 49$", "$4x^2 - 28x - 49$", "$2x^2 - 49$"],
+                correct: 1, // Choice B
                 explanation: "Pola selisih kuadrat $(a-b)(a+b) = a^2 - b^2$:\n$(2x)^2 - (7)^2 = 4x^2 - 49$."
             },
             {
                 id: 19,
                 category: "Operasi Perkalian",
                 question: "Hasil pengkuadratan binomial $(4a - 3b)^2$ adalah...",
-                options: ["$16a^2 - 24ab + 9b^2$", "$16a^2 - 9b^2$", "$16a^2 + 24ab + 9b^2$", "$8a^2 - 12ab + 6b^2$"],
-                correct: 0,
+                options: ["$16a^2 - 9b^2$", "$16a^2 + 24ab + 9b^2$", "$16a^2 - 24ab + 9b^2$", "$8a^2 - 12ab + 6b^2$"],
+                correct: 2, // Choice C
                 explanation: "Gunakan rumus $(x - y)^2 = x^2 - 2xy + y^2$:\n$(4a)^2 - 2(4a)(3b) + (3b)^2 = 16a^2 - 24ab + 9b^2$."
             },
             {
@@ -427,15 +427,15 @@
                 category: "Operasi Perkalian",
                 question: "Hasil dari $(x + 4)(x^2 - 2x + 3)$ adalah...",
                 options: ["$x^3 + 2x^2 - 5x + 12$", "$x^3 - 2x^2 + 3x + 12$", "$x^3 + 2x^2 - x + 12$", "$x^3 + 6x^2 - 5x + 12$"],
-                correct: 0,
+                correct: 0, // Choice A
                 explanation: "Kalikan distributif:\n$x(x^2 - 2x + 3) + 4(x^2 - 2x + 3) = x^3 - 2x^2 + 3x + 4x^2 - 8x + 12 = x^3 + 2x^2 - 5x + 12$."
             },
             {
                 id: 21,
                 category: "Operasi Pembagian",
                 question: "Hasil pembagian aljabar $\\frac{18x^5y^4}{6x^3y^2}$ adalah...",
-                options: ["$3x^2y^2$", "$3x^8y^6$", "$3x^2y^4$", "$12x^2y^2$"],
-                correct: 0,
+                options: ["$3x^8y^6$", "$3x^2y^4$", "$3x^2y^2$", "$12x^2y^2$"],
+                correct: 2, // Choice C
                 explanation: "Bagi koefisien dan kurangkan pangkat variabel sejenis:\n$\\frac{18}{6} x^{5-3} y^{4-2} = 3x^2y^2$."
             },
             {
@@ -443,7 +443,7 @@
                 category: "Operasi Pembagian",
                 question: "Sederhanakan pembagian berikut: $\\frac{20a^4b^3 - 12a^3b^4}{4a^2b^2}$ !",
                 options: ["$5a^2b - 3ab^2$", "$5a^2b - 3a^2b^2$", "$5ab - 3ab^2$", "$5a^2 - 3b^2$"],
-                correct: 0,
+                correct: 0, // Choice A
                 explanation: "Bagi setiap suku pada pembilang dengan penyebut $4a^2b^2$:\n• $\\frac{20a^4b^3}{4a^2b^2} = 5a^{4-2}b^{3-2} = 5a^2b$\n• $\\frac{12a^3b^4}{4a^2b^2} = 3a^{3-2}b^{4-2} = 3ab^2$\nHasil $= 5a^2b - 3ab^2$."
             },
 
@@ -452,32 +452,32 @@
                 id: 23,
                 category: "Substitusi Aljabar",
                 question: "Jika nilai $x = -3$ dan $y = 2$, berapakah nilai dari $3x^2 - 2xy + y^2$?",
-                options: ["$43$", "$31$", "$19$", "$27$"],
-                correct: 0,
+                options: ["$31$", "$43$", "$19$", "$27$"],
+                correct: 1, // Choice B
                 explanation: "Substitusi nilai ke dalam bentuk aljabar:\n$3(-3)^2 - 2(-3)(2) + (2)^2 = 3(9) - (-12) + 4 = 27 + 12 + 4 = 43$."
             },
             {
                 id: 24,
                 category: "Substitusi Aljabar",
                 question: "Diketahui $P = 4x - 3y$ dan $Q = 3x + 2y$. Bentuk sederhana dari $3P - 2Q$ adalah...",
-                options: ["$6x - 13y$", "$6x - 5y$", "$18x - 13y$", "$6x + 13y$"],
-                correct: 0,
+                options: ["$6x - 5y$", "$18x - 13y$", "$6x + 13y$", "$6x - 13y$"],
+                correct: 3, // Choice D
                 explanation: "$3P - 2Q = 3(4x - 3y) - 2(3x + 2y) = 12x - 9y - 6x - 4y = (12x - 6x) + (-9y - 4y) = 6x - 13y$."
             },
             {
                 id: 25,
                 category: "Sifat Aljabar",
                 question: "Pernyataan $4(3x - 5) = 12x - 20$ merupakan contoh penerapan dari sifat...",
-                options: ["Distributif", "Komutatif", "Asosiatif", "Invers"],
-                correct: 0,
+                options: ["Komutatif", "Distributif", "Asosiatif", "Invers"],
+                correct: 1, // Choice B
                 explanation: "Mengalikan faktor luar kurung ke tiap suku dalam kurung adalah prinsip Sifat Distributif."
             },
             {
                 id: 26,
                 category: "Penyederhanaan",
                 question: "Bentuk sederhana dari pecahan aljabar $\\frac{x^2 - 16}{x - 4}$ (untuk $x \\ne 4$) adalah...",
-                options: ["$x + 4$", "$x - 4$", "$x + 16$", "$4x$"],
-                correct: 0,
+                options: ["$x - 4$", "$x + 16$", "$x + 4$", "$4x$"],
+                correct: 2, // Choice C
                 explanation: "Faktorkan pembilang: $x^2 - 16 = (x - 4)(x + 4)$.\nMaka $\\frac{(x - 4)(x + 4)}{x - 4} = x + 4$."
             },
             {
@@ -485,7 +485,7 @@
                 category: "Penyederhanaan",
                 question: "Sederhanakan pecahan aljabar $\\frac{2x + 6}{x^2 - 9}$ untuk $x \\ne \\pm 3$ !",
                 options: ["$\\frac{2}{x - 3}$", "$\\frac{2}{x + 3}$", "$\\frac{2x}{x - 3}$", "$\\frac{1}{x - 3}$"],
-                correct: 0,
+                correct: 0, // Choice A
                 explanation: "Faktorkan pembilang dan penyebut:\n$\\frac{2(x + 3)}{(x - 3)(x + 3)} = \\frac{2}{x - 3}$."
             },
 
@@ -494,24 +494,24 @@
                 id: 28,
                 category: "Soal Terapan",
                 question: "Sebuah persegi panjang memiliki panjang $(4x + 3)$ cm dan lebar $(2x - 1)$ cm. Keliling persegi panjang tersebut dalam $x$ adalah...",
-                options: ["$12x + 4$ cm", "$6x + 2$ cm", "$8x + 3$ cm", "$12x + 8$ cm"],
-                correct: 0,
+                options: ["$6x + 2$ cm", "$12x + 4$ cm", "$8x + 3$ cm", "$12x + 8$ cm"],
+                correct: 1, // Choice B
                 explanation: "Keliling $= 2(p + l) = 2((4x + 3) + (2x - 1)) = 2(6x + 2) = 12x + 4$ cm."
             },
             {
                 id: 29,
                 category: "Soal Terapan",
                 question: "Luas sebuah kebun berbentuk persegi panjang dengan panjang $(3x + 4)$ meter dan lebar $(x - 2)$ meter adalah...",
-                options: ["$3x^2 - 2x - 8 \\text{ m}^2$", "$3x^2 + 2x - 8 \\text{ m}^2$", "$3x^2 - 8 \\text{ m}^2$", "$3x^2 - 10x - 8 \\text{ m}^2$"],
-                correct: 0,
+                options: ["$3x^2 + 2x - 8 \\text{ m}^2$", "$3x^2 - 8 \\text{ m}^2$", "$3x^2 - 2x - 8 \\text{ m}^2$", "$3x^2 - 10x - 8 \\text{ m}^2$"],
+                correct: 2, // Choice C
                 explanation: "Luas $= p \\times l = (3x + 4)(x - 2) = 3x^2 - 6x + 4x - 8 = 3x^2 - 2x - 8 \\text{ m}^2$."
             },
             {
                 id: 30,
                 category: "Soal Terapan",
                 question: "Pak Dimas membeli 4 karung beras disimbolkan $x$ dan 6 kg beras eceran. Ia menjual 2 karung beras dan 4 kg beras eceran. Sisa beras Pak Dimas adalah...",
-                options: ["$2x + 2$ kg", "$2x + 10$ kg", "$6x + 10$ kg", "$2x - 2$ kg"],
-                correct: 0,
+                options: ["$2x + 10$ kg", "$6x + 10$ kg", "$2x - 2$ kg", "$2x + 2$ kg"],
+                correct: 3, // Choice D
                 explanation: "Beras awal $= 4x + 6$. Terjual $= 2x + 4$.\nSisa beras $= (4x + 6) - (2x + 4) = 4x + 6 - 2x - 4 = 2x + 2$ kg."
             }
         ];
